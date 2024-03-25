@@ -1,7 +1,8 @@
 const siteKey = '6LcYETIUAAAAAKz6T9MxMEllN8yw0ffsErIbAGS';
 
 fetch(`https://www.google.com/recaptcha/api2/userverify?k=${siteKey}`, {
-  method: 'POST'
+  method: 'POST',
+  mode: 'no-cors'
 })
 .then(response => {
   if (!response.ok) {
