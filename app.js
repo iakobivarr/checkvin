@@ -1,17 +1,17 @@
-var siteKey = '6LcYETIUAAAAAKz6T9MxMEllN8yw0ffsErIbAGS-';
-var recaptchaResponse = 'RECAPTCHA_RESPONSE_HERE';
-var userIpAddress = 'USER_IP_ADDRESS_HERE';
-fetch('https://www.google.com/recaptcha/api/siteverify', {
-    method: 'POST',
-    mode: 'no-cors', // Set mode to 'no-cors'
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: 'secret=' + siteKey + '&response=' + recaptchaResponse + '&remoteip=' + userIpAddress
+const siteKey = '6LcYETIUAAAAAKz6T9MxMEllN8yw0ffsErIbAGS';
+
+fetch(`https://www.google.com/recaptcha/api2/userverify?k=${siteKey}`, {
+  method: 'POST'
 })
 .then(response => {
-    console.log('Success:', response);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  console.log(data);
 })
 .catch(error => {
-    console.error('Error during reCAPTCHA verification:', error);
+  console.error('There was a problem with your fetch operation:', error);
 });
